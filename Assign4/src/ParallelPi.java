@@ -8,14 +8,20 @@ import java.lang.Runtime;
 
 public class ParallelPi implements Runnable{
     private String threadName;
-    private Queue <Integer> TaskQueue;
-    private HashMap <Integer,Integer> ResultTable;
+    private TaskQueue digitTasks;
+    private ResultTable resultDigits;
+    private Bpp pi;
 
 
-    public ParallelPi(String name, Queue sharedTaskQueue, HashMap sharedResultTable){
+    public ParallelPi(String name, TaskQueue sharedTaskQueue, ResultTable sharedResultTable){
         this.threadName = name;
-        this.TaskQueue = sharedTaskQueue;
+        this.piTasks = sharedTaskQueue;
         this.ResultTable = sharedResultTable;
+        this.pi = new Bpp();
+    }
+
+    public void run(){
+
     }
 
 
