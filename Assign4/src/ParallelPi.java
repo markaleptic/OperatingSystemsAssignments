@@ -19,7 +19,5 @@ public class ParallelPi implements Runnable{
     }
 
 
-    public void printQueue(){
-        System.out.println(this.TaskQueue);
-    }
+    
 }
