@@ -18,23 +18,23 @@ public class ResultTable<E>{
             System.out.printf("Redundant result for key");
             return;
         }
+
         taskCount++;
 
-        if(taskCount == 10) printDot();
+        if(taskCount % 10 == 0) printDot();
+        if(taskCount == 1000) displayValues();
     }
 
-    public synchronized void displayValues(){
-        System.out.printf("Size of table: %d\n\n", digits.size());
-
-        System.out.printf("3.");
+    public void displayValues(){
+        System.out.printf("\n3.");
         for(int key = 1; key < digits.size() + 1; key++){
             System.out.printf(digits.get(key).toString());
         }
+        System.out.println();
     }
     
-    public synchronized void printDot(){
+    public void printDot(){
         System.out.printf(".");
-        taskCount = 0;
         countsPerLine++;
         if(countsPerLine == 20) {
             System.out.println();

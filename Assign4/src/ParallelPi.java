@@ -43,10 +43,4 @@ public class ParallelPi implements Runnable{
             resultDigitsTable.insert(digit.get(), value);
         }
     }
-
-    public Boolean getState(){
-        return stopFlag;
-    }
-
-    
 }

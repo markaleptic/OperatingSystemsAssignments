@@ -22,9 +22,17 @@ public class Assign4{
             threads[thread] = new Thread(new ParallelPi(digitsToCompute, computedDigits));
             threads[thread].start();
         }
-        long endTime = System.currentTimeMillis();
 
-        System.out.printf("Computing %d digits of Pi took %d ms", digitsOfPi, endTime - startTime);
+        try {
+            for(Thread t : threads){
+                t.join();
+            }
+        } catch (Exception e) {
+            System.out.println("Error in joining threads");
+        }
+
+        long endTime = System.currentTimeMillis();
+        System.out.printf("\nComputing %d digits of Pi took %d ms\n", digitsOfPi, endTime - startTime);
 
     } 
 
