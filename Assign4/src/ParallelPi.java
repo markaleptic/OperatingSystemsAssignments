@@ -5,31 +5,45 @@ import java.lang.Runtime;
 
 
 public class ParallelPi implements Runnable{
-    private String threadName;
-    private TaskQueue digitTasks;
-    private ResultTable resultDigits;
+    private TaskQueue<Integer> digitTasksQueue;
+    private ResultTable<Integer> resultDigitsTable;
     private Bpp pi;
     private Boolean stopFlag = false;
 
 
-    public ParallelPi(String name, TaskQueue sharedTaskQueue, ResultTable sharedResultTable){
-        this.threadName = name;
-        this.piTasks = sharedTaskQueue;
-        this.ResultTable = sharedResultTable;
+    public ParallelPi(TaskQueue<Integer> sharedTaskQueue, ResultTable<Integer> sharedResultTable){
+        this.digitTasksQueue = sharedTaskQueue;
+        this.resultDigitsTable = sharedResultTable;
         this.pi = new Bpp();
     }
 
     public void run(){
         Optional<Integer> digit;
-        while(!stopFlag){
-            digit = piTasks.pop();
-            if(digit.isEmpty()){
-                stopFlag = true;
-            }
+        Integer value;
 
+        while(!stopFlag){
+            // Get next digit to compute
+            digit = digitTasksQueue.pop();
+
+            // Break loop when the task queue is empty
+            if(digit.isEmpty()) {
+                stopFlag = true;
+                continue;
+            }
+            // Get the decimal value plus 8 digits
+            value = pi.getDecimal(digit.get().longValue());
+            
+            // Strip trailing 8 digits to keep actual digit value
+            value = Integer.parseInt(Integer.toString(value).substring(0, 1));
+
+            // Put digit, value into Hash Table
+            resultDigitsTable.insert(digit.get(), value);
         }
     }
 
+    public Boolean getState(){
+        return stopFlag;
+    }
 
     
 }

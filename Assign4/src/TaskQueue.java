@@ -1,8 +1,10 @@
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Optional;
+import java.util.Collections;
 
-public class TaskQueue<Integer>{
+public class TaskQueue<E>{
     private Queue<Integer> tq;
 
 
@@ -11,23 +13,25 @@ public class TaskQueue<Integer>{
     // work easily with Collections.shuffle().
     public TaskQueue(int size){
         ArrayList<Integer> rng = new ArrayList<Integer>(size);
-        for(int i = 1; i < size; i++){
-            rng.add(i);
+        for(int i = 0; i < size; i++){
+            Integer val = Integer.valueOf(i + 1);
+            rng.add(i, val);
         }
         Collections.shuffle(rng);
-        this.tq = new LinkedList(rng);
+        this.tq = new LinkedList<Integer>(rng);
     }
 
     /**
      * Synchronized interfaced for returning head value of the FIFO
      * queue. Returns an Optional if the Queue is empty.
      */
-    public synchronized Integer pop(){
+    public synchronized Optional<Integer> pop(){
         Integer digit = tq.poll();
         if(digit == null){
             return Optional.empty();
         }
-        
-        return Optional.of(digit);;
+
+        return Optional.of(digit);
     }
+
 }
