@@ -24,7 +24,7 @@ sourceSets{
 
 jar{
 	manifest{
-		attributes 'Main-Class': 'Assign3'
+		attributes 'Main-Class': 'Assign4'
 	}
 }
 

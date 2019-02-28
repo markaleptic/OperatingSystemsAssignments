@@ -32,9 +32,9 @@ public class ResultTable<E>{
     /**
      * Report '3.' remaining digits of pi by cycling through hash map.
      */
-    public void displayValues(){
+    public synchronized void displayValues(){
         System.out.printf("\n3.");
-        for(int key = 1; key < digits.size() + 1; key++){
+        for(int key = 1; key <= digits.size(); key++){
             System.out.printf(digits.get(key).toString());
         }
         System.out.println();

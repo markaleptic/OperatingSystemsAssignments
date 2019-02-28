@@ -41,10 +41,11 @@ public class ParallelPi implements Runnable{
                 stopFlag = true;
                 continue;
             }
+
             // Get the decimal value plus 8 digits
-            value = pi.getDecimal(digit.get().longValue());
-            
-            // Strip trailing 8 digits to keep actual digit value
+            value = pi.getDecimal(digit.get().intValue());
+
+            // Subselect first digit
             value = Integer.parseInt(Integer.toString(value).substring(0, 1));
 
             // Put digit, value into Hash Table
