@@ -25,6 +25,8 @@ public class ResultTable<E>{
 
     public synchronized void displayValues(){
         System.out.printf("Size of table: %d\n\n", digits.size());
+
+        System.out.printf("3.");
         for(int key = 1; key < digits.size() + 1; key++){
             System.out.printf(digits.get(key).toString());
         }

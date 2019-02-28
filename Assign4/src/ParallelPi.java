@@ -17,6 +17,9 @@ public class ParallelPi implements Runnable{
         this.pi = new Bpp();
     }
 
+    /**
+     * Runnable interface implementation
+     */
     public void run(){
         Optional<Integer> digit;
         Integer value;
