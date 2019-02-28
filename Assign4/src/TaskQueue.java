@@ -1,7 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Optional;
 
-public class TaskQueue extends Queue{
+public class TaskQueue<Integer>{
     private Queue<Integer> tq;
 
 
@@ -24,10 +25,9 @@ public class TaskQueue extends Queue{
     public synchronized Integer pop(){
         Integer digit = tq.poll();
         if(digit == null){
-            Optional<Integer> empty = Optional.isEmpty();
-            return empty;
+            return Optional.empty();
         }
-
-        return digit;
+        
+        return Optional.of(digit);;
     }
 }

@@ -1,6 +1,4 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.HashMap;
+import java.util.Optional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.lang.Runtime;
@@ -11,6 +9,7 @@ public class ParallelPi implements Runnable{
     private TaskQueue digitTasks;
     private ResultTable resultDigits;
     private Bpp pi;
+    private Boolean stopFlag = false;
 
 
     public ParallelPi(String name, TaskQueue sharedTaskQueue, ResultTable sharedResultTable){
@@ -21,7 +20,14 @@ public class ParallelPi implements Runnable{
     }
 
     public void run(){
+        Optional<Integer> digit;
+        while(!stopFlag){
+            digit = piTasks.pop();
+            if(digit.isEmpty()){
+                stopFlag = true;
+            }
 
+        }
     }
 
 
