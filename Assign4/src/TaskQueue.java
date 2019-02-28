@@ -4,6 +4,12 @@ import java.util.Queue;
 import java.util.Optional;
 import java.util.Collections;
 
+
+/**
+ * Synchronized FIFO queue class utilizing LinkedList underlying structure that holds 
+ * each position or digit of Pi to compute. Queue is a shared resource to ParallelPi 
+ * and is synchronized to worker threads.
+ */
 public class TaskQueue<E>{
     private Queue<Integer> tq;
 
@@ -23,7 +29,8 @@ public class TaskQueue<E>{
 
     /**
      * Synchronized interfaced for returning head value of the FIFO
-     * queue. Returns an Optional if the Queue is empty.
+     * queue. Returns an Optional if the Queue is empty to avoid null
+     * pointer exceptions.
      */
     public synchronized Optional<Integer> pop(){
         Integer digit = tq.poll();

@@ -1,5 +1,6 @@
-import java.util.HashMap;
-
+/**
+ * @author Mark Allred, A01647260, mark.allred@aggiemail.usu.edu
+ */
 public class Assign4{
     public static void main(String[] args){
 
@@ -11,13 +12,14 @@ public class Assign4{
         // Create hash table that holds the value of pi where the key is its digit position. 
         ResultTable<Integer> computedDigits = new ResultTable<Integer>(digitsOfPi);
 
-        // Dynamically create threads based upon available processors
+        // Create list to hold threads based upon available processors
         int procs = Runtime.getRuntime().availableProcessors();
         Thread[] threads = new Thread[procs];
 
         // Track time to display to user
         long startTime = System.currentTimeMillis();
         
+        // Create and join threads
         for(int thread = 0; thread < procs; thread++){
             threads[thread] = new Thread(new ParallelPi(digitsToCompute, computedDigits));
             threads[thread].start();
@@ -31,6 +33,7 @@ public class Assign4{
             System.out.println("Error in joining threads");
         }
 
+        // Report time in milliseconds
         long endTime = System.currentTimeMillis();
         System.out.printf("\nComputing %d digits of Pi took %d ms\n", digitsOfPi, endTime - startTime);
 

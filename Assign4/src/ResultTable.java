@@ -1,6 +1,10 @@
 import java.util.HashMap;
 
 
+/**
+ * Synchronized HashMap that holds each digit of pi (value) based on its digit position (key).
+ * Reports progress in terminal with '.' for every 10th digit computed.
+ */
 public class ResultTable<E>{
     private HashMap<Integer,Integer> digits;
     private int taskCount = 0;
@@ -25,6 +29,9 @@ public class ResultTable<E>{
         if(taskCount == 1000) displayValues();
     }
 
+    /**
+     * Report '3.' remaining digits of pi by cycling through hash map.
+     */
     public void displayValues(){
         System.out.printf("\n3.");
         for(int key = 1; key < digits.size() + 1; key++){
@@ -33,6 +40,10 @@ public class ResultTable<E>{
         System.out.println();
     }
     
+    /**
+     * Function displays a dot for each tenth computation with
+     * twenty dots per line.
+     */
     public void printDot(){
         System.out.printf(".");
         countsPerLine++;

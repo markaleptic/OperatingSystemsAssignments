@@ -4,6 +4,14 @@ import java.util.Collections;
 import java.lang.Runtime;
 
 
+/**
+ * Interface for parallelizing computing digits of pi. 
+ * 
+ * @digitTasksQueue - Shared FIFO queue for receiving digits of pi to compute
+ * @resultDigitsTable - Shared HashMap for inputing the value of the digit (value) and its position in pi (key)
+ * @pi - Instance of digit computation class
+ * @stopFlag - Flag to signify when digitTasksQueue is empty.
+ */
 public class ParallelPi implements Runnable{
     private TaskQueue<Integer> digitTasksQueue;
     private ResultTable<Integer> resultDigitsTable;
