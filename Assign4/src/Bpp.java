@@ -78,7 +78,9 @@ public class Bpp {
 			s = mulMod(s, t, av);
 			sum = (sum + (double) s / (double) av) % 1;
 		}
-		return (int) (sum * 10); // 1e9 is 9 decimal places
+		return (int) (sum * 10); // Per piazza suggestions - simpler to find zero values rather than looking at length of returned value.
+		// return (int) (sum * 1e9); // 1e9 is 9 decimal places
+
 	}
 
 	private long mulMod(long a, long b, long m) {
